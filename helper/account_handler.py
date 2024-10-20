@@ -100,11 +100,11 @@ async def add_member(user_id, config, active, method):
 
     total_account = len(config["accounts"])
     PYRO.info(f"total account trying to login {total_account}")
-    await asyncio.sleep(0.2)
+    await asyncio.sleep(0.3)
     applist = await addlogin(config["accounts"], g_s_id)
     logined_account = len(applist)
     PYRO.info(f"total logind account {logined_account}")
-    await asyncio.sleep(1)
+    await asyncio.sleep(2)
     if method[0] == "u":
         usermethod = "username"
     else:
@@ -174,6 +174,7 @@ async def add_member(user_id, config, active, method):
                         printfinal()
                         PYRO.info("Finished")
             except:
+                await asyncio.sleep(1)
                 printfinal()
                 PYRO.info("Finished")
             try:
@@ -183,9 +184,11 @@ async def add_member(user_id, config, active, method):
                 PYRO.info(
                     f"trying to add {current_user} by : {phone} account-postiton : {postiton + 1} / {postion2}"
                 )
+                await asyncio.sleep(1)
                 await app.add_chat_members(
                     chat_id=chat_idt, user_ids=user_id[counter][usermethod]
                 )
+                await asyncio.sleep(5)
                 PYRO.info(f"{current_user} added success")
                 counter += 1
                 added += 1
